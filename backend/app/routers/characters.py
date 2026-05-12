@@ -71,6 +71,26 @@ def get_character(
     return character
 
 
+@router.patch("/{character_id}/campaign/{campaign_id}", response_model=CharacterOut)
+def assign_to_campaign(
+    character_id: int,
+    campaign_id: int,
+    db: Session = Depends(get_db),
+    current: User = Depends(get_current_user),
+):
+    character = db.get(Character, character_id)
+    if not character or character.owner_id != current.id:
+        raise HTTPException(status_code=404, detail="Character not found")
+    from app.models import Campaign  # local import to avoid cycle on autodoc
+    campaign = db.get(Campaign, campaign_id)
+    if not campaign or campaign.owner_id != current.id:
+        raise HTTPException(status_code=404, detail="Campaign not found")
+    character.campaign_id = campaign_id
+    db.commit()
+    db.refresh(character)
+    return character
+
+
 @router.delete("/{character_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_character(
     character_id: int,

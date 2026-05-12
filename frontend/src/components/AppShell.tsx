@@ -38,6 +38,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   Dashboard
                 </NavLink>
                 <NavLink
+                  to="/campaigns"
+                  className={({ isActive }) =>
+                    `px-3 py-1.5 rounded-md text-sm transition ${
+                      isActive ? "bg-surface-2 text-text" : "text-text-dim hover:text-text"
+                    }`
+                  }
+                >
+                  Campaigns
+                </NavLink>
+                <NavLink
                   to="/characters/new"
                   className={({ isActive }) =>
                     `px-3 py-1.5 rounded-md text-sm transition ${

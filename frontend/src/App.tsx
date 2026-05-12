@@ -8,6 +8,10 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Dashboard } from "./pages/Dashboard";
 import { CharacterCreate } from "./pages/CharacterCreate";
+import { Campaigns } from "./pages/Campaigns";
+import { CampaignCreate } from "./pages/CampaignCreate";
+import { CampaignPage } from "./pages/Campaign";
+import { Session } from "./pages/Session";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const token = useAuthStore((s) => s.accessToken);
@@ -46,6 +50,38 @@ export default function App() {
           element={
             <RequireAuth>
               <CharacterCreate />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/campaigns"
+          element={
+            <RequireAuth>
+              <Campaigns />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/campaigns/new"
+          element={
+            <RequireAuth>
+              <CampaignCreate />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/campaigns/:id"
+          element={
+            <RequireAuth>
+              <CampaignPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/campaigns/:id/session"
+          element={
+            <RequireAuth>
+              <Session />
             </RequireAuth>
           }
         />
