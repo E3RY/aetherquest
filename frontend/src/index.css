@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-text: var(--text);
+  --color-text-dim: var(--text-dim);
+  --color-border: var(--border);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --font-display: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ============ THEMES ============ */
+:root,
+:root[data-theme="classic_fantasy"] {
+  --bg: #0e0a1c;
+  --surface: #1a1430;
+  --surface-2: #261d47;
+  --accent: #b794f6;
+  --accent-2: #f6e05e;
+  --text: #ece6ff;
+  --text-dim: #9a8fbd;
+  --border: #2d2350;
+  --danger: #f56565;
+  --success: #68d391;
+  --glow: 0 0 40px rgba(183, 148, 246, 0.25);
+}
+
+:root[data-theme="pirate"] {
+  --bg: #061520;
+  --surface: #0e2638;
+  --surface-2: #143447;
+  --accent: #e6b450;
+  --accent-2: #4fc3e6;
+  --text: #f0e6d2;
+  --text-dim: #8aa1aa;
+  --border: #1d3e54;
+  --danger: #f56565;
+  --success: #68d391;
+  --glow: 0 0 40px rgba(230, 180, 80, 0.25);
+}
+
+:root[data-theme="futuristic"] {
+  --bg: #050812;
+  --surface: #0b1224;
+  --surface-2: #121c38;
+  --accent: #00f5ff;
+  --accent-2: #ff3df0;
+  --text: #e0f7ff;
+  --text-dim: #6e84a4;
+  --border: #1c2b4d;
+  --danger: #ff5577;
+  --success: #5af0a0;
+  --glow: 0 0 40px rgba(0, 245, 255, 0.3);
+}
+
+:root[data-theme="post_apoc"] {
+  --bg: #14100a;
+  --surface: #1f1810;
+  --surface-2: #2a2014;
+  --accent: #d97706;
+  --accent-2: #84cc16;
+  --text: #f0e4ce;
+  --text-dim: #9c8b70;
+  --border: #382a17;
+  --danger: #ef4444;
+  --success: #84cc16;
+  --glow: 0 0 40px rgba(217, 119, 6, 0.25);
+}
+
+/* ============ BASE ============ */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-image:
+    radial-gradient(ellipse at top left, color-mix(in oklab, var(--accent) 12%, transparent), transparent 50%),
+    radial-gradient(ellipse at bottom right, color-mix(in oklab, var(--accent-2) 8%, transparent), transparent 50%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 50%, transparent);
+  color: var(--text);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--accent) 30%, transparent);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--accent) 50%, transparent);
+}
+
+.font-display { font-family: var(--font-display); letter-spacing: 0.02em; }
